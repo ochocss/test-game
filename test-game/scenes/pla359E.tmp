@@ -30,9 +30,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kcih2")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack",
-"speed": 6.0
+"speed": 5.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_20ung"]
@@ -216,12 +216,8 @@ collision_layer = 2
 script = ExtResource("1_la670")
 
 [node name="AttackAnimatedSprite" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_5iu7d")
 animation = &"attack"
-frame = 2
-frame_progress = 1.0
 flip_h = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -246,13 +242,12 @@ shape = SubResource("RectangleShape2D_54ml6")
 disabled = true
 
 [node name="JumpSoundEffect" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(0, 14)
 stream = ExtResource("3_vsrvb")
 volume_db = -10.242
 bus = &"Sound Effects"
 
 [node name="AttackSoundEffect" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(0, 15)
+position = Vector2(-10, -6)
 stream = ExtResource("4_3t2r4")
 bus = &"Sound Effects"
 
