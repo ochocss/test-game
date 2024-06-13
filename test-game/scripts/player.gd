@@ -67,6 +67,7 @@ func _physics_process(delta):
 		
 		knife_collision_shape.disabled = false
 		velocity.x = 0
+		velocity.y = 0
 		direction = 0
 		attack_sound_effect.play()
 
