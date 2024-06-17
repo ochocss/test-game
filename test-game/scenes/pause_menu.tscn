@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://df0ch55lqwhmw"]
+
+[ext_resource type="Script" path="res://scenes/pause_menu.gd" id="1_e6xyv"]
+[ext_resource type="Texture2D" uid="uid://dd8ghoakiebjg" path="res://assets/sprites/menu_background.png" id="1_v2yer"]
+[ext_resource type="FontFile" uid="uid://c0vt7el0lpsqk" path="res://assets/fonts/PixelOperator8.ttf" id="2_drp33"]
+[ext_resource type="PackedScene" uid="uid://6ufvykm1vpb3" path="res://scenes/options_menu.tscn" id="4_yrbyi"]
+
+[sub_resource type="Gradient" id="Gradient_lxs2d"]
+colors = PackedColorArray(0.176419, 0.176419, 0.176419, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xaygq"]
+gradient = SubResource("Gradient_lxs2d")
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e6xyv")
+
+[node name="OpacitySprite" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.784314)
+position = Vector2(576, 324)
+scale = Vector2(7.52941, 7.62353)
+texture = ExtResource("1_v2yer")
+
+[node name="OptionsMenu" parent="." instance=ExtResource("4_yrbyi")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.304
+anchor_top = 0.321
+anchor_right = 0.696
+anchor_bottom = 0.614
+offset_left = -0.208008
+offset_top = 41.992
+offset_right = 0.207947
+offset_bottom = 0.127991
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 350.0
+offset_top = 250.0
+offset_right = -350.0
+offset_bottom = -250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_drp33")
+theme_override_font_sizes/font_size = 32
+text = "Resume"
+icon = SubResource("GradientTexture1D_xaygq")
+alignment = 0
+
+[node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_drp33")
+theme_override_font_sizes/font_size = 32
+text = "Options"
+icon = SubResource("GradientTexture1D_xaygq")
+alignment = 0
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_drp33")
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+icon = SubResource("GradientTexture1D_xaygq")
+alignment = 0
+
+[connection signal="back_button_pressed" from="OptionsMenu" to="." method="_on_options_menu_back_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

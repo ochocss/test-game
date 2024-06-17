@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://6ufvykm1vpb3"]
+
+[ext_resource type="Script" path="res://scenes/options_menu.gd" id="1_gh46u"]
+[ext_resource type="FontFile" uid="uid://c0vt7el0lpsqk" path="res://assets/fonts/PixelOperator8.ttf" id="2_oenu3"]
+
+[node name="OptionsMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchor_right = 0.392
+anchor_bottom = 0.242
+offset_right = 0.415985
+offset_bottom = 0.18399
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gh46u")
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 452.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("2_oenu3")
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[node name="MusicVBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_top = 50.0
+offset_right = 452.0
+offset_bottom = 94.0
+
+[node name="MusicLabel" type="Label" parent="MusicVBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oenu3")
+theme_override_font_sizes/font_size = 24
+text = "Music Volume"
+vertical_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="MusicVBoxContainer"]
+layout_mode = 2
+min_value = -30.0
+max_value = 0.0
+
+[node name="EffectsVBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_top = 114.0
+offset_right = 452.0
+offset_bottom = 158.0
+alignment = 2
+
+[node name="SoundEffectLabel" type="Label" parent="EffectsVBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oenu3")
+theme_override_font_sizes/font_size = 24
+text = "Sound Effects Volume"
+vertical_alignment = 1
+
+[node name="SoundEffectSlider" type="HSlider" parent="EffectsVBoxContainer"]
+layout_mode = 2
+min_value = -30.0
+max_value = 0.0
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="value_changed" from="MusicVBoxContainer/MusicSlider" to="." method="_on_music_audio_slider_value_changed"]
+[connection signal="value_changed" from="MusicVBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="EffectsVBoxContainer/SoundEffectSlider" to="." method="_on_sound_effect_h_slider_value_changed"]
+[connection signal="value_changed" from="EffectsVBoxContainer/SoundEffectSlider" to="." method="_on_sound_effect_slider_value_changed"]

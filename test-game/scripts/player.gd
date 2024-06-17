@@ -10,6 +10,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var attack_animated_sprite = $AttackAnimatedSprite
 @onready var knife_collision_shape = $Knife/KnifeCollisionShape
 
+@onready var collision_shape = $CollisionShape2D
+
 @onready var jump_sound_effect = $JumpSoundEffect
 @onready var attack_sound_effect = $AttackSoundEffect
 
@@ -19,7 +21,7 @@ func _physics_process(delta):
 	# Prio to attack anim
 	if attack_animated_sprite.is_playing():
 		return
-		
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://buv3ufh8upf6q"]
+[gd_scene load_steps=6 format=3 uid="uid://buv3ufh8upf6q"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_dhyts"]
 [ext_resource type="FontFile" uid="uid://c0vt7el0lpsqk" path="res://assets/fonts/PixelOperator8.ttf" id="1_q1cb2"]
 [ext_resource type="Texture2D" uid="uid://bomvia2rmttwy" path="res://assets/sprites/inventory_background.png" id="3_3b6v3"]
 [ext_resource type="Texture2D" uid="uid://btirau7rvhcvj" path="res://assets/sprites/map.png" id="4_cwhpi"]
+[ext_resource type="PackedScene" uid="uid://df0ch55lqwhmw" path="res://scenes/pause_menu.tscn" id="5_v6ael"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_dhyts")
@@ -57,6 +58,9 @@ offset_top = -30.0
 offset_right = -10.0
 offset_bottom = 15.0
 disabled = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("5_v6ael")]
+visible = false
 
 [connection signal="pressed" from="Map/GreenAreaButton" to="." method="_on_green_area_button_pressed"]
 [connection signal="pressed" from="Map/PurpleAreaButton" to="." method="_on_purple_area_button_pressed"]
