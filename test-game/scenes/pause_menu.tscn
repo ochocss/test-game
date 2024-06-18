@@ -45,9 +45,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 350.0
-offset_top = 250.0
+offset_top = 238.0
 offset_right = -350.0
-offset_bottom = -250.0
+offset_bottom = -238.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -63,13 +63,31 @@ text = "Resume"
 icon = SubResource("GradientTexture1D_xaygq")
 alignment = 0
 
+[node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_drp33")
+theme_override_font_sizes/font_size = 32
+text = "Save"
+icon = SubResource("GradientTexture1D_xaygq")
+alignment = 0
+
 [node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("2_drp33")
 theme_override_font_sizes/font_size = 32
-text = "Options"
+text = "Options  "
+icon = SubResource("GradientTexture1D_xaygq")
+alignment = 0
+
+[node name="OptionsButton2" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_drp33")
+theme_override_font_sizes/font_size = 32
+text = "Controls"
 icon = SubResource("GradientTexture1D_xaygq")
 alignment = 0
 
@@ -81,6 +99,7 @@ text = "Quit"
 icon = SubResource("GradientTexture1D_xaygq")
 alignment = 0
 
+[connection signal="back_button_pressed" from="OptionsMenu" to="." method="_on_options_menu_back_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

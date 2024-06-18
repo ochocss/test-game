@@ -6,6 +6,14 @@ signal back_button_pressed
 var music_bus = AudioServer.get_bus_index("Music")
 var sound_effect_bus = AudioServer.get_bus_index("Sound Effects")
 
+@onready var music_slider = $MusicVBoxContainer/MusicSlider
+@onready var sound_effect_slider = $EffectsVBoxContainer/SoundEffectSlider
+
+
+func _ready():
+	music_slider.value = AudioServer.get_bus_volume_db(1)
+	sound_effect_slider.value = AudioServer.get_bus_volume_db(2)
+
 
 func _on_back_button_pressed():
 	emit_signal("back_button_pressed")

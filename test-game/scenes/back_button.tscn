@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceoqrjox0j1xb"]
+
+[ext_resource type="FontFile" uid="uid://c0vt7el0lpsqk" path="res://assets/fonts/PixelOperator8.ttf" id="1_kc8cn"]
+
+[node name="BackButton" type="Button"]
+offset_right = 452.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("1_kc8cn")
+theme_override_font_sizes/font_size = 32
+text = "Back"
