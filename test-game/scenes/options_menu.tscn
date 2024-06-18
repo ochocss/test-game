@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://6ufvykm1vpb3"]
 
-[ext_resource type="Script" path="res://scenes/options_menu.gd" id="1_gh46u"]
+[ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_vrhkj"]
 [ext_resource type="FontFile" uid="uid://c0vt7el0lpsqk" path="res://assets/fonts/PixelOperator8.ttf" id="2_oenu3"]
 
 [node name="OptionsMenu" type="Control"]
@@ -12,7 +12,7 @@ offset_right = 0.415985
 offset_bottom = 0.18399
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_gh46u")
+script = ExtResource("1_vrhkj")
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 0
@@ -60,7 +60,7 @@ min_value = -30.0
 max_value = 0.0
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="value_changed" from="MusicVBoxContainer/MusicSlider" to="." method="_on_music_audio_slider_value_changed"]
 [connection signal="value_changed" from="MusicVBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="EffectsVBoxContainer/SoundEffectSlider" to="." method="_on_sound_effect_h_slider_value_changed"]
+[connection signal="value_changed" from="MusicVBoxContainer/MusicSlider" to="." method="_on_music_audio_slider_value_changed"]
 [connection signal="value_changed" from="EffectsVBoxContainer/SoundEffectSlider" to="." method="_on_sound_effect_slider_value_changed"]
+[connection signal="value_changed" from="EffectsVBoxContainer/SoundEffectSlider" to="." method="_on_sound_effect_h_slider_value_changed"]

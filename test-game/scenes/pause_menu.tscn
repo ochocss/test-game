@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://df0ch55lqwhmw"]
 
-[ext_resource type="Script" path="res://scenes/pause_menu.gd" id="1_e6xyv"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_fm21r"]
 [ext_resource type="Texture2D" uid="uid://dd8ghoakiebjg" path="res://assets/sprites/menu_background.png" id="1_v2yer"]
 [ext_resource type="FontFile" uid="uid://c0vt7el0lpsqk" path="res://assets/fonts/PixelOperator8.ttf" id="2_drp33"]
 [ext_resource type="PackedScene" uid="uid://6ufvykm1vpb3" path="res://scenes/options_menu.tscn" id="4_yrbyi"]
@@ -19,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_e6xyv")
+script = ExtResource("1_fm21r")
 
 [node name="OpacitySprite" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.784314)
@@ -81,7 +81,6 @@ text = "Quit"
 icon = SubResource("GradientTexture1D_xaygq")
 alignment = 0
 
-[connection signal="back_button_pressed" from="OptionsMenu" to="." method="_on_options_menu_back_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
