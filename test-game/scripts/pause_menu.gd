@@ -1,22 +1,30 @@
 extends Control
 
 @onready var options_menu = $OptionsMenu
-@onready var margin_container = $MarginContainer
+@onready var controls_menu = $ControlsMenu
+
+@onready var main_menu_container = $MainMenuContainer
+
 
 var paused = false
-var options_opened = false
+var tab_opened = false
 
 func _process(_delta):
 	if Input.is_action_just_pressed("open_menu"):
-		esc_action()
+		if controls_menu.visible == true:
+			esc_action(controls_menu)
+		else:
+			esc_action(options_menu)
 
-func esc_action():
-	if options_opened:
-		options_opened = false
-		options_menu.hide()
-		margin_container.show()
+func esc_action(tab):
+	# esc while some other pause menu is open
+	if tab_opened:
+		tab_opened = false
+		tab.hide()
+		main_menu_container.show()
 		return
 	
+	# esc while the main pause menu is open
 	if paused:
 		Engine.time_scale = 1
 		hide()
@@ -32,9 +40,7 @@ func _on_resume_button_pressed():
 
 
 func _on_options_button_pressed():
-	options_opened = true
-	margin_container.hide()
-	options_menu.show()
+	open_tab(options_menu)
 
 
 func _on_quit_button_pressed():
@@ -42,5 +48,16 @@ func _on_quit_button_pressed():
 
 
 func _on_options_menu_back_button_pressed():
+	tab_opened = false
 	options_menu.hide()
-	margin_container.show()
+	main_menu_container.show()
+
+
+func _on_controls_button_pressed():
+	open_tab(controls_menu)
+
+
+func open_tab(menu):
+	tab_opened = true
+	main_menu_container.hide()
+	menu.show()

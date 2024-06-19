@@ -6,8 +6,8 @@ signal back_button_pressed
 var music_bus = AudioServer.get_bus_index("Music")
 var sound_effect_bus = AudioServer.get_bus_index("Sound Effects")
 
-@onready var music_slider = $MusicVBoxContainer/MusicSlider
-@onready var sound_effect_slider = $EffectsVBoxContainer/SoundEffectSlider
+@onready var music_slider = $VBoxContainer/MusicSlider
+@onready var sound_effect_slider = $VBoxContainer/SoundEffectSlider
 
 
 func _ready():

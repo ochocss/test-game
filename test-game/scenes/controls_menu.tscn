@@ -1,9 +1,76 @@
-[gd_scene format=3 uid="uid://bkksux0pusrw0"]
+[gd_scene load_steps=5 format=3 uid="uid://bkksux0pusrw0"]
+
+[ext_resource type="Script" path="res://scripts/controls_menu.gd" id="1_6l4u8"]
+[ext_resource type="FontFile" uid="uid://c0vt7el0lpsqk" path="res://assets/fonts/PixelOperator8.ttf" id="1_cdpx8"]
+[ext_resource type="PackedScene" uid="uid://dqn6b22wpktqf" path="res://scenes/input_button.tscn" id="1_nvc24"]
+[ext_resource type="PackedScene" uid="uid://ceoqrjox0j1xb" path="res://scenes/back_button.tscn" id="2_s0uhe"]
 
 [node name="ControlsMenu" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_6l4u8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = 52.0
+offset_right = 480.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="BackButton" parent="VBoxContainer" instance=ExtResource("2_s0uhe")]
+layout_mode = 2
+
+[node name="Space2" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InputContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="InputButton" parent="VBoxContainer/InputContainer" instance=ExtResource("1_nvc24")]
+layout_mode = 2
+
+[node name="InputButton2" parent="VBoxContainer/InputContainer" instance=ExtResource("1_nvc24")]
+layout_mode = 2
+
+[node name="InputButton3" parent="VBoxContainer/InputContainer" instance=ExtResource("1_nvc24")]
+layout_mode = 2
+
+[node name="InputButton4" parent="VBoxContainer/InputContainer" instance=ExtResource("1_nvc24")]
+layout_mode = 2
+
+[node name="InputButton5" parent="VBoxContainer/InputContainer" instance=ExtResource("1_nvc24")]
+layout_mode = 2
+
+[node name="InputButton6" parent="VBoxContainer/InputContainer" instance=ExtResource("1_nvc24")]
+layout_mode = 2
+
+[node name="InputButton7" parent="VBoxContainer/InputContainer" instance=ExtResource("1_nvc24")]
+layout_mode = 2
+
+[node name="Space" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ResetButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_cdpx8")
+theme_override_font_sizes/font_size = 32
+text = "Reset to default"
+
+[connection signal="pressed" from="VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
