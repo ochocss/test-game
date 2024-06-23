@@ -1,8 +1,12 @@
 extends Control
 
 
+signal back_button_pressed
+
+
 @onready var input_button_scene = preload("res://scenes/input_button.tscn")
 @onready var input_container = $VBoxContainer/InputContainer
+
 
 var input_actions = {
 	"move_right": "Move Right",
@@ -18,6 +22,7 @@ var input_actions = {
 var is_remapping = false
 var action_to_remap = null
 var remapping_button = null
+
 
 func _ready():
 	create_action_list()
@@ -76,3 +81,7 @@ func update_action_list(button, event):
 
 func _on_reset_button_pressed():
 	create_action_list()
+
+
+func _on_back_button_pressed():
+	emit_signal("back_button_pressed")

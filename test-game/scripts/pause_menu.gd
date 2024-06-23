@@ -48,9 +48,11 @@ func _on_quit_button_pressed():
 
 
 func _on_options_menu_back_button_pressed():
-	tab_opened = false
-	options_menu.hide()
-	main_menu_container.show()
+	back_button_pressed(options_menu)
+
+
+func _on_controls_menu_back_button_pressed():
+	back_button_pressed(controls_menu)
 
 
 func _on_controls_button_pressed():
@@ -61,3 +63,9 @@ func open_tab(menu):
 	tab_opened = true
 	main_menu_container.hide()
 	menu.show()
+
+
+func back_button_pressed(tab):
+	tab_opened = false
+	tab.hide()
+	main_menu_container.show()

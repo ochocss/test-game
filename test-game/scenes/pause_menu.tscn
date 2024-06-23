@@ -99,6 +99,7 @@ text = "Quit"
 icon = SubResource("GradientTexture1D_xaygq")
 alignment = 0
 
+[connection signal="back_button_pressed" from="ControlsMenu" to="." method="_on_controls_menu_back_button_pressed"]
 [connection signal="back_button_pressed" from="OptionsMenu" to="." method="_on_options_menu_back_button_pressed"]
 [connection signal="pressed" from="MainMenuContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MainMenuContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
