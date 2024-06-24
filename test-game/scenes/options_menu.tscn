@@ -6,10 +6,9 @@
 [node name="OptionsMenu" type="Control"]
 visible = false
 layout_mode = 3
-anchor_right = 0.392
-anchor_bottom = 0.242
-offset_right = 700.416
-offset_bottom = 491.184
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4

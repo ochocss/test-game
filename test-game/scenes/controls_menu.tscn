@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkksux0pusrw0"]
+[gd_scene load_steps=4 format=3 uid="uid://bkksux0pusrw0"]
 
 [ext_resource type="Script" path="res://scripts/controls_menu.gd" id="1_6l4u8"]
 [ext_resource type="FontFile" uid="uid://c0vt7el0lpsqk" path="res://assets/fonts/PixelOperator8.ttf" id="1_cdpx8"]
 [ext_resource type="PackedScene" uid="uid://dqn6b22wpktqf" path="res://scenes/input_button.tscn" id="1_nvc24"]
-[ext_resource type="PackedScene" uid="uid://ceoqrjox0j1xb" path="res://scenes/back_button.tscn" id="2_s0uhe"]
 
 [node name="ControlsMenu" type="Control"]
 visible = false
@@ -30,8 +29,12 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="BackButton" parent="VBoxContainer" instance=ExtResource("2_s0uhe")]
+[node name="BackButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_cdpx8")
+theme_override_font_sizes/font_size = 32
+text = "Back
+"
 
 [node name="Space2" type="Control" parent="VBoxContainer"]
 layout_mode = 2
