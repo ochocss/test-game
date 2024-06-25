@@ -24,8 +24,8 @@ script = ExtResource("1_fm21r")
 
 [node name="OpacitySprite" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.784314)
-position = Vector2(640, 360)
-scale = Vector2(8.36601, 8.47059)
+position = Vector2(767.5, 360)
+scale = Vector2(10.0327, 8.47059)
 texture = ExtResource("1_v2yer")
 
 [node name="ControlsMenu" parent="." instance=ExtResource("4_f0x3y")]

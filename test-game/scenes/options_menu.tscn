@@ -24,9 +24,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -242.0
-offset_top = -108.0
+offset_top = -126.0
 offset_right = 242.0
-offset_bottom = 108.0
+offset_bottom = 126.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -41,6 +41,23 @@ text = "Back"
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="ResolutionButton" type="OptionButton" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oenu3")
+theme_override_font_sizes/font_size = 24
+item_count = 3
+selected = 2
+popup/item_0/text = "Exclusive Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Windowed"
+popup/item_2/id = 2
+
+[node name="Space3" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="MusicLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oenu3")
@@ -49,12 +66,13 @@ text = "Music Volume"
 vertical_alignment = 1
 
 [node name="MusicSlider" type="HSlider" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 min_value = -30.0
 max_value = 0.0
 value = -10.0
 
-[node name="Space2" type="Control" parent="VBoxContainer"]
+[node name="Space4" type="Control" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -66,13 +84,13 @@ text = "Sound Effects Volume"
 vertical_alignment = 1
 
 [node name="SoundEffectSlider" type="HSlider" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 min_value = -30.0
 max_value = 0.0
 value = -10.0
 
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="value_changed" from="VBoxContainer/MusicSlider" to="." method="_on_music_audio_slider_value_changed"]
+[connection signal="item_selected" from="VBoxContainer/ResolutionButton" to="." method="_on_resolution_button_item_selected"]
 [connection signal="value_changed" from="VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/SoundEffectSlider" to="." method="_on_sound_effect_h_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/SoundEffectSlider" to="." method="_on_sound_effect_slider_value_changed"]
