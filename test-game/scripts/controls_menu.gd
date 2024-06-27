@@ -25,11 +25,18 @@ var remapping_button = null
 
 
 func _ready():
+	load_keybindings_from_settings()
 	create_action_list()
 
 
+func load_keybindings_from_settings():
+	var keybindings = ConfigFileHandler.load_keybindings()
+	for action in keybindings.keys():
+		InputMap.action_erase_events(action)
+		InputMap.action_add_event(action, keybindings[action])
+
+
 func create_action_list():
-	InputMap.load_from_project_settings()
 	for item in input_container.get_children():
 		item.queue_free()
 	
@@ -66,6 +73,7 @@ func _input(event):
 			
 			InputMap.action_erase_events(action_to_remap)
 			InputMap.action_add_event(action_to_remap, event)
+			ConfigFileHandler.save_keybinding(action_to_remap, event)
 			update_action_list(remapping_button, event)
 			
 			is_remapping = false
@@ -80,6 +88,11 @@ func update_action_list(button, event):
 
 
 func _on_reset_button_pressed():
+	InputMap.load_from_project_settings()
+	for action in input_actions:
+		var events = InputMap.action_get_events(action)
+		if events.size() > 0:
+			ConfigFileHandler.save_keybinding(action, events[0])
 	create_action_list()
 
 
