@@ -5,4 +5,8 @@
 [node name="Music" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_rc015")
 autoplay = true
+attenuation = 1e-05
 bus = &"Music"
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
