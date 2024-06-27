@@ -41,7 +41,7 @@ text = "Back"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ResolutionButton" type="OptionButton" parent="VBoxContainer"]
+[node name="ScreenButton" type="OptionButton" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oenu3")
 theme_override_font_sizes/font_size = 24
@@ -70,7 +70,7 @@ unique_name_in_owner = true
 layout_mode = 2
 min_value = -30.0
 max_value = 0.0
-value = -10.0
+value = -15.0
 
 [node name="Space4" type="Control" parent="VBoxContainer"]
 layout_mode = 2
@@ -88,9 +88,11 @@ unique_name_in_owner = true
 layout_mode = 2
 min_value = -30.0
 max_value = 0.0
-value = -10.0
+value = -15.0
 
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="item_selected" from="VBoxContainer/ResolutionButton" to="." method="_on_resolution_button_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/ScreenButton" to="." method="_on_screen_button_item_selected"]
+[connection signal="drag_ended" from="VBoxContainer/MusicSlider" to="." method="_on_music_slider_drag_ended"]
 [connection signal="value_changed" from="VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="drag_ended" from="VBoxContainer/SoundEffectSlider" to="." method="_on_sound_effect_slider_drag_ended"]
 [connection signal="value_changed" from="VBoxContainer/SoundEffectSlider" to="." method="_on_sound_effect_slider_value_changed"]
