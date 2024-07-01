@@ -16,12 +16,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var attack_sound_effect = $AttackSoundEffect
 
 @onready var ui = $"../UI"
+@onready var platforms = $"../Platforms"
+
 
 func _physics_process(delta):
-	# Prio to attack anim
-	if attack_animated_sprite.is_playing():
-		return
-	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -55,24 +53,18 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") and !attack_animated_sprite.is_playing():
 		if not animated_sprite.flip_h:
 			knife_collision_shape.position.x = 10
 		else:
 			knife_collision_shape.position.x = -10
 		
-		animated_sprite.stop()
-		animated_sprite.visible = false
-		
 		attack_animated_sprite.visible = true
 		attack_animated_sprite.play("attack")
 		
 		knife_collision_shape.disabled = false
-		velocity.x = 0
-		velocity.y = 0
-		direction = 0
 		attack_sound_effect.play()
-
+	
 	move_and_slide()
 
 func _on_knife_body_entered(body):
