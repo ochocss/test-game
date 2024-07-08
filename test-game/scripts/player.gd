@@ -72,7 +72,7 @@ func _on_knife_body_entered(body):
 		body.direction = 0
 		body.get_node("AnimationPlayer").play("die")
 		body.get_node("AnimatedSprite2D").play("death")
-		ui.add_items(body.get_groups()[0])
+		ui.add_item(body.get_groups()[0])
 
 func _on_attack_animated_sprite_animation_finished():
 	attack_animated_sprite.visible = false

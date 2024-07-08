@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var inventory_background = $InventoryBackground
+@onready var inventory = $Inventory
 @onready var map = $Map
 
 @onready var green_area_button = $Map/GreenAreaButton
@@ -9,7 +9,7 @@ extends CanvasLayer
 
 func _process(_delta):
 	if Input.is_action_just_pressed("open_inventory"):
-		inventory_background.visible = !inventory_background.visible
+		inventory.visible = !inventory.visible
 	
 	if Input.is_action_just_pressed("open_map"):
 		map.visible = !map.visible
@@ -17,8 +17,8 @@ func _process(_delta):
 		green_area_button.disabled = !green_area_button.disabled
 
 
-func add_items(item):
-	inventory_background.get_node(item + "Label").text = str(inventory_background.get_node(item + "Label").text.to_int() + 1)
+func add_item(item : String):
+	inventory.add_item(item)
 
 
 func _on_green_area_button_pressed():

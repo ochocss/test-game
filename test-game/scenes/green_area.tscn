@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://djfjchufbxvo3"]
 
 [ext_resource type="PackedScene" uid="uid://buv3ufh8upf6q" path="res://scenes/ui.tscn" id="1_k4mrx"]
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_wetyd"]
+[ext_resource type="PackedScene" uid="uid://xgnkjyj40mwe" path="res://scenes/game_manager.tscn" id="2_3sdwu"]
 [ext_resource type="Texture2D" uid="uid://ciylfpfgkwx8" path="res://assets/sprites/world_tileset.png" id="3_46cgu"]
 [ext_resource type="PackedScene" uid="uid://bfbu6hnsm8y7h" path="res://scenes/player.tscn" id="4_s0ayw"]
 [ext_resource type="PackedScene" uid="uid://6y2fnfc7sqp0" path="res://scenes/killzone.tscn" id="5_epu2h"]
@@ -535,9 +535,8 @@ position = Vector2(540, 301)
 
 [node name="UI" parent="." instance=ExtResource("1_k4mrx")]
 
-[node name="GameManager" type="Node" parent="."]
+[node name="GameManager" parent="." instance=ExtResource("2_3sdwu")]
 unique_name_in_owner = true
-script = ExtResource("2_wetyd")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-19, -6)

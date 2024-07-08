@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbv3mx0k8rj6m"]
+
+[ext_resource type="Script" path="res://scenes/inventory.gd" id="1_agxf6"]
+[ext_resource type="Texture2D" uid="uid://bomvia2rmttwy" path="res://assets/sprites/inventory_background.png" id="1_yr8c2"]
+[ext_resource type="FontFile" uid="uid://c0vt7el0lpsqk" path="res://assets/fonts/PixelOperator8.ttf" id="2_8vvmh"]
+
+[node name="Inventory" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 774.0
+offset_bottom = 476.0
+script = ExtResource("1_agxf6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 774.0
+offset_bottom = 476.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 12
+
+[node name="InventoryBackground" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(387, 238)
+scale = Vector2(6.84956, 4.4486)
+texture = ExtResource("1_yr8c2")
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+columns = 10
+
+[node name="SlimeLabel" type="Label" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_8vvmh")
+theme_override_font_sizes/font_size = 48
+text = "0"

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvnn16qbwywa6"]
+[gd_scene load_steps=7 format=3 uid="uid://cvnn16qbwywa6"]
 
 [ext_resource type="PackedScene" uid="uid://buv3ufh8upf6q" path="res://scenes/ui.tscn" id="1_8yihi"]
 [ext_resource type="Texture2D" uid="uid://ciylfpfgkwx8" path="res://assets/sprites/world_tileset.png" id="2_08q0j"]
+[ext_resource type="PackedScene" uid="uid://xgnkjyj40mwe" path="res://scenes/game_manager.tscn" id="2_h1qj2"]
 [ext_resource type="PackedScene" uid="uid://bfbu6hnsm8y7h" path="res://scenes/player.tscn" id="3_0qqt4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0njvr"]
@@ -408,6 +409,8 @@ sources/0 = SubResource("TileSetAtlasSource_0njvr")
 [node name="PurpleArea" type="Node2D"]
 
 [node name="UI" parent="." instance=ExtResource("1_8yihi")]
+
+[node name="GameManager" parent="." instance=ExtResource("2_h1qj2")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_d5r72")
