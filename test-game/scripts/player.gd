@@ -16,7 +16,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var attack_sound_effect = $AttackSoundEffect
 
 @onready var ui = $"../UI"
-@onready var platforms = $"../Platforms"
 
 
 func _physics_process(delta):
@@ -67,6 +66,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
+
 func _on_knife_body_entered(body):
 	if body.get_parent().name == "Enemies":
 		body.direction = 0
@@ -74,8 +74,25 @@ func _on_knife_body_entered(body):
 		body.get_node("AnimatedSprite2D").play("death")
 		ui.add_item(body.get_groups()[0])
 
+
 func _on_attack_animated_sprite_animation_finished():
 	attack_animated_sprite.visible = false
 	animated_sprite.visible = true
 	
 	knife_collision_shape.disabled = true
+
+
+func save():
+	var save_dict = {
+		"filename" : get_path(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x,
+		"pos_y" : position.y,
+	}
+	return save_dict
+
+
+func load_data(data : Dictionary):
+	position.x = data.get("pos_x")
+	position.y = data.get("pos_y")
+	

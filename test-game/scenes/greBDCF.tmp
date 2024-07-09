@@ -555,7 +555,7 @@ limit_top = -200
 limit_bottom = 117
 position_smoothing_enabled = true
 
-[node name="Killzone" parent="." groups=["Persist"] instance=ExtResource("5_epu2h")]
+[node name="Killzone" parent="." instance=ExtResource("5_epu2h")]
 position = Vector2(-485, -181)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]

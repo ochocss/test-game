@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://btirau7rvhcvj" path="res://assets/sprites/map.png" id="4_cwhpi"]
 [ext_resource type="PackedScene" uid="uid://df0ch55lqwhmw" path="res://scenes/pause_menu.tscn" id="5_v6ael"]
 
-[node name="UI" type="CanvasLayer"]
+[node name="UI" type="CanvasLayer" groups=["Persist"]]
 script = ExtResource("1_dhyts")
 
 [node name="ScoreLabel" type="Label" parent="."]
