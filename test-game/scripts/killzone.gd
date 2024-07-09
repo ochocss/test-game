@@ -28,8 +28,6 @@ func _on_timer_timeout():
 
 func save():
 	var save_dict = {
-		"filename" : get_path(),
-		"parent" : get_parent().get_path(),
 		"is_dying" : is_dying,
 	}
 	return save_dict

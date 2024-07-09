@@ -48,8 +48,6 @@ func _on_purple_area_button_pressed():
 
 func save():
 	var save_dict = {
-		"filename" : get_path(),
-		"parent" : get_parent().get_path(),
 		"score" : score,
 		"player_current_area" : player_current_area,
 	}

@@ -84,8 +84,6 @@ func _on_attack_animated_sprite_animation_finished():
 
 func save():
 	var save_dict = {
-		"filename" : get_path(),
-		"parent" : get_parent().get_path(),
 		"pos_x" : position.x,
 		"pos_y" : position.y,
 	}
