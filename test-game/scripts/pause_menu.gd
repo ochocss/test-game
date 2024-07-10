@@ -9,12 +9,19 @@ extends Control
 var paused = false
 var tab_opened = false
 
+
 func _process(_delta):
-	if Input.is_action_just_pressed("open_menu"):
-		if controls_menu.visible == true:
+	if Input.is_action_just_pressed("esc"):
+		if UI.get_node("Inventory").visible == true:
+			UI.get_node("Inventory").hide()
+		elif UI.get_node("Map").visible == true:
+			UI.get_node("Map").hide()
+		
+		elif controls_menu.visible == true:
 			esc_action(controls_menu)
 		else:
 			esc_action(options_menu)
+
 
 func esc_action(tab):
 	# esc while some other pause menu is open
@@ -34,9 +41,30 @@ func esc_action(tab):
 	
 	paused = !paused
 
+
+func open_tab(menu):
+	tab_opened = true
+	main_menu_container.hide()
+	menu.show()
+
+
+func back_button_pressed(tab):
+	tab_opened = false
+	tab.hide()
+	main_menu_container.show()
+
+
 func _on_resume_button_pressed():
 	hide()
 	Engine.time_scale = 1
+
+
+func _on_load_button_pressed():
+	SaveFileHandler.load_game()
+
+
+func _on_save_button_pressed():
+	SaveFileHandler.save_game()
 
 
 func _on_options_button_pressed():
@@ -57,15 +85,3 @@ func _on_controls_menu_back_button_pressed():
 
 func _on_controls_button_pressed():
 	open_tab(controls_menu)
-
-
-func open_tab(menu):
-	tab_opened = true
-	main_menu_container.hide()
-	menu.show()
-
-
-func back_button_pressed(tab):
-	tab_opened = false
-	tab.hide()
-	main_menu_container.show()

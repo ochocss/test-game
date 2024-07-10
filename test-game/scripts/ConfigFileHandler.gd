@@ -13,7 +13,6 @@ func _ready():
 		config.set_value("keybinding", "attack", "Q")
 		config.set_value("keybinding", "open_map", "M")
 		config.set_value("keybinding", "open_inventory", "E")
-		config.set_value("keybinding", "open_menu", "Escape")
 		
 		config.set_value("video", "screen_mode", 1)
 		

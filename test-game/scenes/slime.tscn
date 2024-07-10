@@ -45,7 +45,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kw83x")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 6.0
 }, {
@@ -224,7 +224,6 @@ script = ExtResource("1_txlse")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4l828")
-animation = &"death"
 autoplay = "default"
 flip_h = true
 

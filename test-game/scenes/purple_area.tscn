@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvnn16qbwywa6"]
+[gd_scene load_steps=7 format=3 uid="uid://cvnn16qbwywa6"]
 
-[ext_resource type="PackedScene" uid="uid://buv3ufh8upf6q" path="res://scenes/ui.tscn" id="1_8yihi"]
 [ext_resource type="Texture2D" uid="uid://ciylfpfgkwx8" path="res://assets/sprites/world_tileset.png" id="2_08q0j"]
 [ext_resource type="PackedScene" uid="uid://bfbu6hnsm8y7h" path="res://scenes/player.tscn" id="3_0qqt4"]
+[ext_resource type="PackedScene" uid="uid://6y2fnfc7sqp0" path="res://scenes/killzone.tscn" id="4_02tab"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0njvr"]
 texture = ExtResource("2_08q0j")
@@ -405,9 +405,9 @@ texture = ExtResource("2_08q0j")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_0njvr")
 
-[node name="PurpleArea" type="Node2D"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xbwjg"]
 
-[node name="UI" parent="." instance=ExtResource("1_8yihi")]
+[node name="PurpleArea" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_d5r72")
@@ -424,3 +424,8 @@ position = Vector2(-104, -65)
 zoom = Vector2(4, 4)
 limit_right = 0
 limit_bottom = 0
+
+[node name="Killzone" parent="." groups=["Persist"] instance=ExtResource("4_02tab")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("WorldBoundaryShape2D_xbwjg")

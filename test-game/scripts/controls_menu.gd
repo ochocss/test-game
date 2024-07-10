@@ -3,10 +3,8 @@ extends Control
 
 signal back_button_pressed
 
-
 @onready var input_button_scene = preload("res://scenes/input_button.tscn")
 @onready var input_container = $VBoxContainer/InputContainer
-
 
 var input_actions = {
 	"move_right": "Move Right",
@@ -17,7 +15,6 @@ var input_actions = {
 	"open_inventory": "Open Inventory",
 	"open_map": "Open Map"
 }
-
 
 var is_remapping = false
 var action_to_remap = null
