@@ -11,7 +11,9 @@ var tab_opened = false
 
 
 func _process(_delta):
-	if Input.is_action_just_pressed("open_menu"):
+	if Input.is_action_just_pressed("esc"):
+		if UI.get_node("Inventory").visible == true || UI.get_node("Map").visible == true:
+			return
 		if controls_menu.visible == true:
 			esc_action(controls_menu)
 		else:
