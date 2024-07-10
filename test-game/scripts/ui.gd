@@ -38,6 +38,11 @@ func add_point():
 	score_label.text = str(score)
 
 
+func reset_score():
+	score = 0
+	score_label.text = "0"
+
+
 func _on_green_area_button_pressed():
 	if get_tree().current_scene.name == "PurpleArea":
 		map.hide()

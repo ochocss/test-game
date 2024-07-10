@@ -19,6 +19,7 @@ func _on_body_entered(body):
 
 func _on_timer_timeout():
 	get_tree().reload_current_scene()
+	UI.reset_score()
 	Engine.time_scale = 1.0
 	is_dying = false
 
