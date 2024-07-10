@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var score_label = %ScoreLabel
 @onready var green_area_button = $Map/Map/GreenAreaButton
 @onready var purple_area_button = $Map/Map/PurpleAreaButton
+@onready var pause_menu = $PauseMenu
 
 var player_current_area = "green"
 var score = 0
@@ -15,12 +16,6 @@ func _ready():
 
 
 func _process(_delta):
-	if Input.is_action_just_pressed("esc"):
-		if inventory.visible:
-			inventory.hide()
-		elif map.visible:
-			map.hide()
-	
 	if Input.is_action_just_pressed("open_inventory") && map.visible == false:
 		if inventory.visible:
 			inventory.hide()
@@ -45,6 +40,7 @@ func add_point():
 
 func _on_green_area_button_pressed():
 	if get_tree().current_scene.name == "PurpleArea":
+		map.hide()
 		player_current_area = "green"
 		get_tree().change_scene_to_file("res://scenes/green_area.tscn")
 

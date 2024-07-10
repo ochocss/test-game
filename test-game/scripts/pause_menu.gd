@@ -12,9 +12,12 @@ var tab_opened = false
 
 func _process(_delta):
 	if Input.is_action_just_pressed("esc"):
-		if UI.get_node("Inventory").visible == true || UI.get_node("Map").visible == true:
-			return
-		if controls_menu.visible == true:
+		if UI.get_node("Inventory").visible == true:
+			UI.get_node("Inventory").hide()
+		elif UI.get_node("Map").visible == true:
+			UI.get_node("Map").hide()
+		
+		elif controls_menu.visible == true:
 			esc_action(controls_menu)
 		else:
 			esc_action(options_menu)
