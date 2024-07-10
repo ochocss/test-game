@@ -2,20 +2,17 @@ extends Area2D
 
 @onready var timer = $Timer
 @onready var death_audio_stream_player = $DeathAudioStreamPlayer
-@onready var player = %Player
 
 var is_dying = false
 
 
 func _on_body_entered(body):
-	if body.name == "Player":
-		death_anim()
-
-
-func death_anim():
+	if body.name != "Player":
+		return
+	
 	death_audio_stream_player.play()
 	Engine.time_scale = 0.35
-	player.get_node("CollisionShape2D").queue_free()
+	body.get_node("CollisionShape2D").queue_free()
 	is_dying = true
 	timer.start()
 
@@ -34,6 +31,13 @@ func save():
 
 
 func load_data(data : Dictionary):
+	var player = $"../Player"
 	is_dying = data.get("is_dying")
-	if is_dying:
-		death_anim()
+	
+	if !is_dying:
+		return
+	
+	Engine.time_scale = 0.35
+	player.get_node("CollisionShape2D").queue_free()
+	is_dying = true
+	timer.start()

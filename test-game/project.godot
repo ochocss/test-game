@@ -26,6 +26,7 @@ boot_splash/minimum_display_time=2000
 Music="*res://scenes/music.tscn"
 ConfigFileHandler="*res://scripts/ConfigFileHandler.gd"
 SaveFileHandler="*res://scripts/SaveFileHandler.gd"
+UI="*res://scenes/ui.tscn"
 
 [display]
 

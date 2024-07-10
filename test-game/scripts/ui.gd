@@ -3,9 +3,8 @@ extends CanvasLayer
 @onready var inventory = $Inventory
 @onready var map = $Map
 @onready var score_label = %ScoreLabel
-
-@onready var green_area_button = $Map/GreenAreaButton
-@onready var purple_area_button = $Map/PurpleAreaButton
+@onready var green_area_button = $Map/Map/GreenAreaButton
+@onready var purple_area_button = $Map/Map/PurpleAreaButton
 
 var player_current_area = "green"
 var score = 0
@@ -16,13 +15,23 @@ func _ready():
 
 
 func _process(_delta):
-	if Input.is_action_just_pressed("open_inventory"):
-		inventory.visible = !inventory.visible
+	if Input.is_action_just_pressed("esc"):
+		if inventory.visible:
+			inventory.hide()
+		elif map.visible:
+			map.hide()
 	
-	if Input.is_action_just_pressed("open_map"):
-		map.visible = !map.visible
-		purple_area_button.disabled = !purple_area_button.disabled
-		green_area_button.disabled = !green_area_button.disabled
+	if Input.is_action_just_pressed("open_inventory") && map.visible == false:
+		if inventory.visible:
+			inventory.hide()
+		else:
+			inventory.show()
+	
+	if Input.is_action_just_pressed("open_map") && inventory.visible == false:
+		if map.visible:
+			map.hide()
+		else:
+			map.show()
 
 
 func add_item(item : String):
@@ -36,14 +45,15 @@ func add_point():
 
 func _on_green_area_button_pressed():
 	if get_tree().current_scene.name == "PurpleArea":
+		player_current_area = "green"
 		get_tree().change_scene_to_file("res://scenes/green_area.tscn")
-		player_current_area = "greem"
 
 
 func _on_purple_area_button_pressed():
 	if get_tree().current_scene.name == "GreenArea":
-		get_tree().change_scene_to_file("res://scenes/purple_area.tscn")
+		map.hide()
 		player_current_area = "purple"
+		get_tree().change_scene_to_file("res://scenes/purple_area.tscn")
 
 
 func save():

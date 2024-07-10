@@ -3,20 +3,16 @@ extends CharacterBody2D
 const SPEED = 110.0
 const JUMP_VELOCITY = -300.0
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var attack_animated_sprite = $AttackAnimatedSprite
 @onready var knife_collision_shape = $Knife/KnifeCollisionShape
-
 @onready var collision_shape = $CollisionShape2D
-
 @onready var jump_sound_effect = $JumpSoundEffect
 @onready var attack_sound_effect = $AttackSoundEffect
 
-@onready var ui = $"../UI"
-
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var current_map = "green"
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -72,7 +68,7 @@ func _on_knife_body_entered(body):
 		body.direction = 0
 		body.get_node("AnimationPlayer").play("die")
 		body.get_node("AnimatedSprite2D").play("death")
-		ui.add_item(body.get_groups()[0])
+		UI.add_item(body.get_groups()[0])
 
 
 func _on_attack_animated_sprite_animation_finished():
@@ -93,4 +89,3 @@ func save():
 func load_data(data : Dictionary):
 	position.x = data.get("pos_x")
 	position.y = data.get("pos_y")
-	
