@@ -71,3 +71,5 @@ func load_data(data : Dictionary):
 	
 	if data.get("player_current_area") == "purple":
 		_on_purple_area_button_pressed()
+	else:
+		_on_green_area_button_pressed()
