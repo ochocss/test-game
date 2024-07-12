@@ -41,7 +41,7 @@ func load_game():
 		var node_data = json.get_data()
 		
 		var node = load_nodes[i]
-		if node.scene_file_path.is_empty() || !node.has_method("save"):
+		if node.scene_file_path.is_empty() || !node.has_method("load_data"):
 			print("Error loading node '" + node.name + "'")
 			continue
 		
