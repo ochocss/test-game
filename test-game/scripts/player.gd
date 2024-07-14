@@ -82,6 +82,9 @@ func save():
 	var save_dict = {
 		"pos_x" : position.x,
 		"pos_y" : position.y,
+		
+		"vel_x" : velocity.x,
+		"vel_y" : velocity.y,
 	}
 	return save_dict
 
@@ -89,3 +92,6 @@ func save():
 func load_data(data : Dictionary):
 	position.x = data.get("pos_x")
 	position.y = data.get("pos_y")
+	
+	velocity.x = data.get("vel_x")
+	velocity.y = data.get("vel_y")

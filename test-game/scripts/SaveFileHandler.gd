@@ -26,6 +26,7 @@ func save_game():
 func load_game():
 	var save_file = FileAccess.open(SAVE_FILE_PATH, FileAccess.READ)
 	var load_nodes = get_tree().get_nodes_in_group("Persist")
+	
 	var i = 0
 	
 	while save_file.get_position() < save_file.get_length():
@@ -40,8 +41,13 @@ func load_game():
 		
 		var node_data = json.get_data()
 		
+		# if player is on purple area, the coins should not load.
+		
+		if i+1 > load_nodes.size():
+			break
+		
 		var node = load_nodes[i]
-		if node.scene_file_path.is_empty() || !node.has_method("save"):
+		if node.scene_file_path.is_empty() || !node.has_method("load_data"):
 			print("Error loading node '" + node.name + "'")
 			continue
 		
