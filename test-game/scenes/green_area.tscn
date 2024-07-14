@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://u1u8ean61ffc"]
+[gd_scene load_steps=20 format=3 uid="uid://u1u8ean61ffc"]
 
+[ext_resource type="Script" path="res://scripts/green_area.gd" id="1_kj1d1"]
 [ext_resource type="Texture2D" uid="uid://ciylfpfgkwx8" path="res://assets/sprites/world_tileset.png" id="3_46cgu"]
 [ext_resource type="PackedScene" uid="uid://bfbu6hnsm8y7h" path="res://scenes/player.tscn" id="4_s0ayw"]
 [ext_resource type="PackedScene" uid="uid://6y2fnfc7sqp0" path="res://scenes/killzone.tscn" id="5_epu2h"]
@@ -530,6 +531,7 @@ _data = {
 
 [node name="GreenArea" type="Node2D"]
 position = Vector2(540, 301)
+script = ExtResource("1_kj1d1")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-19, -6)

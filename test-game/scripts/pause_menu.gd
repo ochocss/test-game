@@ -60,10 +60,13 @@ func _on_resume_button_pressed():
 
 
 func _on_load_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/green_area.tscn")
 	SaveFileHandler.load_game()
 
 
 func _on_save_button_pressed():
+	if get_tree().current_scene.name == "PurpleArea":
+		return
 	SaveFileHandler.save_game()
 
 
