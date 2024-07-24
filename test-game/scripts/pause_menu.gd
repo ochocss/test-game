@@ -2,9 +2,7 @@ extends Control
 
 @onready var options_menu = $OptionsMenu
 @onready var controls_menu = $ControlsMenu
-
 @onready var main_menu_container = $MainMenuContainer
-
 
 var paused = false
 var tab_opened = false
@@ -60,7 +58,8 @@ func _on_resume_button_pressed():
 
 
 func _on_load_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/green_area.tscn")
+	if get_tree().current_scene.name == "PurpleArea":
+		get_tree().change_scene_to_file("res://scenes/green_area.tscn")
 	SaveFileHandler.load_game()
 
 
