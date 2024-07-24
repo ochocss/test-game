@@ -212,6 +212,7 @@ size = Vector2(27, 6)
 
 [node name="Player" type="CharacterBody2D" groups=["Persist"]]
 z_index = 5
+position = Vector2(-489, -257)
 collision_layer = 2
 script = ExtResource("1_la670")
 
