@@ -222,6 +222,9 @@ limit_top = -200
 limit_bottom = 117
 position_smoothing_enabled = true
 
+[node name="Timer" type="Timer" parent="Camera2D"]
+wait_time = 0.06
+
 [node name="AttackAnimatedSprite" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(0, -12)
@@ -263,5 +266,6 @@ position = Vector2(0, 15)
 stream = ExtResource("4_3t2r4")
 bus = &"Sound Effects"
 
+[connection signal="timeout" from="Camera2D/Timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_finished" from="AttackAnimatedSprite" to="." method="_on_attack_animated_sprite_animation_finished"]
 [connection signal="body_entered" from="Knife" to="." method="_on_knife_body_entered"]
