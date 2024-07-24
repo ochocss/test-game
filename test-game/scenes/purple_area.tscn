@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvnn16qbwywa6"]
+[gd_scene load_steps=8 format=3 uid="uid://cvnn16qbwywa6"]
 
+[ext_resource type="Script" path="res://scripts/purple_area.gd" id="1_auxr1"]
 [ext_resource type="Texture2D" uid="uid://ciylfpfgkwx8" path="res://assets/sprites/world_tileset.png" id="2_08q0j"]
 [ext_resource type="PackedScene" uid="uid://bfbu6hnsm8y7h" path="res://scenes/player.tscn" id="3_0qqt4"]
 [ext_resource type="PackedScene" uid="uid://6y2fnfc7sqp0" path="res://scenes/killzone.tscn" id="4_02tab"]
@@ -408,6 +409,7 @@ sources/0 = SubResource("TileSetAtlasSource_0njvr")
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xbwjg"]
 
 [node name="PurpleArea" type="Node2D"]
+script = ExtResource("1_auxr1")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_d5r72")
@@ -419,11 +421,6 @@ layer_1/tile_data = PackedInt32Array(-1, 262144, 1, -2, 262144, 1, -3, 262144, 1
 
 [node name="Player" parent="." instance=ExtResource("3_0qqt4")]
 position = Vector2(-104, -65)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(4, 4)
-limit_right = 0
-limit_bottom = 0
 
 [node name="Killzone" parent="." groups=["Persist"] instance=ExtResource("4_02tab")]
 
