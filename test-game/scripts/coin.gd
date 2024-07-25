@@ -21,7 +21,7 @@ func set_is_collected():
 
 
 func set_uncollected():
-	is_collected = true
+	is_collected = false
 	animation_player.play("RESET")
 
 
@@ -37,3 +37,5 @@ func load_data(data : Dictionary):
 	is_collected = data.get("is_collected")
 	if is_collected:
 		set_is_collected()
+	else:
+		set_uncollected()

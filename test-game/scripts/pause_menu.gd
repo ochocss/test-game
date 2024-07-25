@@ -60,6 +60,7 @@ func _on_resume_button_pressed():
 func _on_load_button_pressed():
 	if get_tree().current_scene.name == "PurpleArea":
 		get_tree().change_scene_to_file("res://scenes/green_area.tscn")
+		return
 	SaveFileHandler.load_game()
 
 
@@ -74,6 +75,8 @@ func _on_options_button_pressed():
 
 
 func _on_quit_button_pressed():
+	if !(get_tree().current_scene.name == "PurpleArea"):
+		SaveFileHandler.save_game()
 	get_tree().quit()
 
 
