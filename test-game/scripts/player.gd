@@ -3,6 +3,8 @@ extends CharacterBody2D
 const SPEED = 110.0
 const JUMP_VELOCITY = -300.0
 
+@onready var camera_2d = $Camera2D
+@onready var timer = $Camera2D/Timer
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var attack_animated_sprite = $AttackAnimatedSprite
 @onready var knife_collision_shape = $Knife/KnifeCollisionShape
@@ -95,3 +97,10 @@ func load_data(data : Dictionary):
 	
 	velocity.x = data.get("vel_x")
 	velocity.y = data.get("vel_y")
+	
+	camera_2d.position_smoothing_enabled = false
+	timer.start()
+
+
+func _on_timer_timeout():
+	camera_2d.position_smoothing_enabled = true
