@@ -51,16 +51,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
 	if Input.is_action_just_pressed("attack") and !attack_animated_sprite.is_playing():
-		if not animated_sprite.flip_h:
-			knife_collision_shape.position.x = 10
-		else:
-			knife_collision_shape.position.x = -10
-		
-		attack_animated_sprite.visible = true
-		attack_animated_sprite.play("attack")
-		
-		knife_collision_shape.disabled = false
-		attack_sound_effect.play()
+		knife_action()
 	
 	move_and_slide()
 
@@ -78,6 +69,19 @@ func _on_attack_animated_sprite_animation_finished():
 	animated_sprite.visible = true
 	
 	knife_collision_shape.disabled = true
+
+
+func knife_action():
+	if not animated_sprite.flip_h:
+		knife_collision_shape.position.x = 10
+	else:
+		knife_collision_shape.position.x = -10
+		
+	attack_animated_sprite.visible = true
+	attack_animated_sprite.play("attack")
+	
+	knife_collision_shape.disabled = false
+	attack_sound_effect.play()
 
 
 func save():
