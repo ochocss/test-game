@@ -174,7 +174,7 @@ texture = ExtResource("3_46cgu")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_xu7kc")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lyqfe"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iqyb3"]
 
 [sub_resource type="Animation" id="Animation_qjjwr"]
 length = 1.7
@@ -311,7 +311,7 @@ position = Vector2(-485, -181)
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillzoneBound"]
-shape = SubResource("WorldBoundaryShape2D_lyqfe")
+shape = SubResource("WorldBoundaryShape2D_iqyb3")
 
 [node name="Platforms" type="Node" parent="."]
 

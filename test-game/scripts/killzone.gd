@@ -1,25 +1,23 @@
 extends Area2D
 
 @onready var timer = $Timer
+@onready var spawn_timer = $SpawnTimer
 @onready var death_audio_stream_player = $DeathAudioStreamPlayer
-@onready var collision_shape_2d = $CollisionShape2D
 
 var is_dying = false
 
 
 func _on_body_entered(body):
-	if !is_instance_of(body, CharacterBody2D) || !has_node("CollisionShape2D"):
+	if !is_instance_of(body, CharacterBody2D) || is_dying:
 		return
 	
 	body.get_node("CollisionShape2D").set_deferred("disabled", true)
-	
-	if name == "KillzoneBound":
-		collision_shape_2d.queue_free()
 	
 	death_audio_stream_player.play()
 	Engine.time_scale = 0.3
 	
 	is_dying = true
+	set_block_signals(true)
 	timer.start()
 
 
@@ -33,9 +31,6 @@ func _on_timer_timeout():
 	var player = get_tree().current_scene.get_node("Player")
 	
 	player.get_node("CollisionShape2D").disabled = false
-	
-	if name == "KillzoneBound":
-		create_world_boundary()
 	
 	if(get_tree().current_scene.name == "GreenArea"):
 		player.position.x = -489
@@ -51,13 +46,11 @@ func _on_timer_timeout():
 	
 	is_dying = false
 	Engine.time_scale = 1.0
+	spawn_timer.start()
 
 
-func create_world_boundary():
-	var new_collision_shape = CollisionShape2D.new()
-	new_collision_shape.shape = WorldBoundaryShape2D.new()
-	
-	add_child(new_collision_shape)
+func _on_spawn_timer_timeout():
+	set_block_signals(false)
 
 
 func save():
