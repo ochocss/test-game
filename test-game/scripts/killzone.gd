@@ -2,22 +2,22 @@ extends Area2D
 
 @onready var timer = $Timer
 @onready var death_audio_stream_player = $DeathAudioStreamPlayer
+@onready var collision_shape_2d = $CollisionShape2D
 
 var is_dying = false
 
 
 func _on_body_entered(body):
-	if body.name != "Player":
+	if !is_instance_of(body, CharacterBody2D) || !has_node("CollisionShape2D"):
 		return
 	
-	death_audio_stream_player.play()
-	Engine.time_scale = 0.35
+	body.get_node("CollisionShape2D").set_deferred("disabled", true)
 	
-	# since the variable is used only in set_deferred, 
-	# the compiler will give warning about it not being used
-	@warning_ignore("unused_variable")
-	var collision_shape = body.get_node("CollisionShape2D")
-	set_deferred("collision_shape.disabled", true)
+	if name == "KillzoneBound":
+		collision_shape_2d.queue_free()
+	
+	death_audio_stream_player.play()
+	Engine.time_scale = 0.3
 	
 	is_dying = true
 	timer.start()
@@ -34,6 +34,9 @@ func _on_timer_timeout():
 	
 	player.get_node("CollisionShape2D").disabled = false
 	
+	if name == "KillzoneBound":
+		create_world_boundary()
+	
 	if(get_tree().current_scene.name == "GreenArea"):
 		player.position.x = -489
 		player.position.y = -257
@@ -48,6 +51,13 @@ func _on_timer_timeout():
 	
 	is_dying = false
 	Engine.time_scale = 1.0
+
+
+func create_world_boundary():
+	var new_collision_shape = CollisionShape2D.new()
+	new_collision_shape.shape = WorldBoundaryShape2D.new()
+	
+	add_child(new_collision_shape)
 
 
 func save():
