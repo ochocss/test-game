@@ -32,7 +32,7 @@ func _on_timer_timeout():
 		for coin in coins.get_children():
 			coin.is_collected = false
 			coin.set_uncollected()
-			
+	
 	var player = get_tree().current_scene.get_node("Player")
 	
 	player.get_node("CollisionShape2D").disabled = false

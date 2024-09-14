@@ -6,6 +6,7 @@ extends Control
 
 var paused = false
 var tab_opened = false
+var death_screen_on = false
 
 
 func _process(_delta):
@@ -33,8 +34,14 @@ func esc_action(tab):
 	if paused:
 		Engine.time_scale = 1
 		hide()
+		if death_screen_on:
+			UI.color_rect.visible = true
+			death_screen_on = false
 	else:
 		Engine.time_scale = 0
+		if UI.color_rect.visible:
+			UI.color_rect.visible = false
+			death_screen_on = true
 		show()
 	
 	paused = !paused
