@@ -307,7 +307,7 @@ layer_1/tile_data = PackedInt32Array(-917536, 0, 0, -917534, 0, 0, -917535, 0, 0
 [node name="Player" parent="." instance=ExtResource("4_s0ayw")]
 
 [node name="KillzoneBound" parent="." groups=["Persist"] instance=ExtResource("5_epu2h")]
-position = Vector2(-485, -181)
+position = Vector2(-484, -176)
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillzoneBound"]

@@ -1,7 +1,6 @@
 extends Area2D
 
 @onready var timer = $Timer
-@onready var spawn_timer = $SpawnTimer
 @onready var death_audio_stream_player = $DeathAudioStreamPlayer
 
 var is_dying = false
@@ -11,13 +10,19 @@ func _on_body_entered(body):
 	if !is_instance_of(body, CharacterBody2D) || is_dying:
 		return
 	
-	body.get_node("CollisionShape2D").set_deferred("disabled", true)
+	if is_instance_of(get_parent(), CharacterBody2D):
+		body.get_node("AnimatedSprite2D").play("death")
 	
+	collision_layer = 3
+	
+	timer.wait_time = 1.4
+	Engine.time_scale = 0.65
+	
+	UI.set_death_screen(true)
 	death_audio_stream_player.play()
-	Engine.time_scale = 0.3
-	
+	Music.stop()
+	body.is_dying = true
 	is_dying = true
-	set_block_signals(true)
 	timer.start()
 
 
@@ -42,15 +47,15 @@ func _on_timer_timeout():
 	player.velocity.x = 0
 	player.velocity.y = 0
 	
+	collision_layer = 1
+	
 	UI.reset_score()
+	UI.set_death_screen(false)
 	
 	is_dying = false
+	player.is_dying = false
 	Engine.time_scale = 1.0
-	spawn_timer.start()
-
-
-func _on_spawn_timer_timeout():
-	set_block_signals(false)
+	Music.play()
 
 
 func save():
@@ -64,7 +69,5 @@ func load_data(data : Dictionary):
 	var player = get_tree().current_scene.get_node("Player")
 	is_dying = data.get("is_dying")
 	
-	if !is_dying:
-		return
-	
-	_on_body_entered(player)
+	if is_dying:
+		_on_body_entered(player)
