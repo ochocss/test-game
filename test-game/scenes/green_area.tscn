@@ -306,7 +306,7 @@ layer_1/tile_data = PackedInt32Array(-917536, 0, 0, -917534, 0, 0, -917535, 0, 0
 
 [node name="Player" parent="." instance=ExtResource("4_s0ayw")]
 
-[node name="KillzoneBound" parent="." groups=["Persist"] instance=ExtResource("5_epu2h")]
+[node name="KillzoneBound" parent="." groups=["Killzones", "Persist"] instance=ExtResource("5_epu2h")]
 position = Vector2(-484, -176)
 input_pickable = false
 
@@ -418,8 +418,8 @@ position = Vector2(929, -2)
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Slime" parent="Enemies" instance=ExtResource("8_osl0c")]
+[node name="Slime" parent="Enemies" groups=["Killzones"] instance=ExtResource("8_osl0c")]
 position = Vector2(897, 11)
 
-[node name="Slime2" parent="Enemies" instance=ExtResource("8_osl0c")]
+[node name="Slime2" parent="Enemies" groups=["Killzones"] instance=ExtResource("8_osl0c")]
 position = Vector2(237, 75)

@@ -14,6 +14,7 @@ metadata/_snap_enabled = true
 gradient = SubResource("Gradient_lxs2d")
 
 [node name="PauseMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

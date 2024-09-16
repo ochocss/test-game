@@ -6,7 +6,6 @@ extends Control
 
 var paused = false
 var tab_opened = false
-var death_screen_on = false
 
 
 func _process(_delta):
@@ -32,19 +31,37 @@ func esc_action(tab):
 	
 	# esc while the main pause menu is open
 	if paused:
-		Engine.time_scale = 1
-		hide()
-		if death_screen_on:
-			UI.color_rect.visible = true
-			death_screen_on = false
+		unpause_game()
 	else:
-		Engine.time_scale = 0
-		if UI.color_rect.visible:
-			UI.color_rect.visible = false
-			death_screen_on = true
-		show()
+		pause_game()
 	
 	paused = !paused
+
+
+func pause_game():
+	Engine.time_scale = 0
+	get_tree().paused = true
+	show()
+	
+	var nodes = get_tree().get_nodes_in_group("Killzone")
+	for node in nodes:
+		if is_instance_of(node, Area2D):
+			node.get_node("Timer").paused = true
+		else:
+			node.get_node("Killzone").get_node("Timer").paused = true
+
+
+func unpause_game():
+	Engine.time_scale = 1
+	get_tree().paused = false
+	hide()
+	
+	var nodes = get_tree().get_nodes_in_group("Killzone")
+	for node in nodes:
+		if is_instance_of(node, Area2D):
+			node.get_node("Timer").paused = false
+		else:
+			node.get_node("Killzone").get_node("Timer").paused = false
 
 
 func open_tab(menu):

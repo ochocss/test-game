@@ -6,6 +6,11 @@ extends Area2D
 var is_dying = false
 
 
+func _process(_delta: float):
+	if is_dying:
+		UI.color_rect.color.a += 0.009
+
+
 func _on_body_entered(body):
 	if !is_instance_of(body, CharacterBody2D) || is_dying:
 		return
@@ -15,14 +20,14 @@ func _on_body_entered(body):
 	
 	collision_layer = 3
 	
-	timer.wait_time = 1.4
 	Engine.time_scale = 0.65
 	
-	UI.set_death_screen(true)
 	death_audio_stream_player.play()
 	Music.stop()
+	
 	body.is_dying = true
 	is_dying = true
+	
 	timer.start()
 
 
@@ -50,12 +55,13 @@ func _on_timer_timeout():
 	collision_layer = 1
 	
 	UI.reset_score()
-	UI.set_death_screen(false)
 	
 	is_dying = false
 	player.is_dying = false
-	Engine.time_scale = 1.0
+	UI.color_rect.color.a = 0
+	
 	Music.play()
+	Engine.time_scale = 1.0
 
 
 func save():
