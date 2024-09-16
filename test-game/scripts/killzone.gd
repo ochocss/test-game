@@ -6,20 +6,28 @@ extends Area2D
 var is_dying = false
 
 
+func _process(_delta: float):
+	if is_dying:
+		UI.color_rect.color.a += 0.009
+
+
 func _on_body_entered(body):
-	if body.name != "Player":
+	if !is_instance_of(body, CharacterBody2D) || is_dying:
 		return
 	
+	if is_instance_of(get_parent(), CharacterBody2D):
+		body.get_node("AnimatedSprite2D").play("death")
+	
+	collision_layer = 3
+	
+	Engine.time_scale = 0.65
+	
 	death_audio_stream_player.play()
-	Engine.time_scale = 0.35
+	Music.stop()
 	
-	# since the variable is used only in set_deferred, 
-	# the compiler will give warning about it not being used
-	@warning_ignore("unused_variable")
-	var collision_shape = body.get_node("CollisionShape2D")
-	set_deferred("collision_shape.disabled", true)
-	
+	body.is_dying = true
 	is_dying = true
+	
 	timer.start()
 
 
@@ -29,7 +37,7 @@ func _on_timer_timeout():
 		for coin in coins.get_children():
 			coin.is_collected = false
 			coin.set_uncollected()
-			
+	
 	var player = get_tree().current_scene.get_node("Player")
 	
 	player.get_node("CollisionShape2D").disabled = false
@@ -44,9 +52,15 @@ func _on_timer_timeout():
 	player.velocity.x = 0
 	player.velocity.y = 0
 	
+	collision_layer = 1
+	
 	UI.reset_score()
 	
 	is_dying = false
+	player.is_dying = false
+	UI.color_rect.color.a = 0
+	
+	Music.play()
 	Engine.time_scale = 1.0
 
 
@@ -61,7 +75,5 @@ func load_data(data : Dictionary):
 	var player = get_tree().current_scene.get_node("Player")
 	is_dying = data.get("is_dying")
 	
-	if !is_dying:
-		return
-	
-	_on_body_entered(player)
+	if is_dying:
+		_on_body_entered(player)

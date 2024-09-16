@@ -12,14 +12,23 @@ const JUMP_VELOCITY = -300.0
 @onready var jump_sound_effect = $JumpSoundEffect
 @onready var attack_sound_effect = $AttackSoundEffect
 
+@export var is_dying : bool = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+
+func _process(_delta):
+	if Input.is_action_just_pressed("attack") and !attack_animated_sprite.is_playing() and !is_dying:
+		knife_action()
 
 
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	
+	if is_dying:
+		return
 	
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -50,18 +59,6 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
-	if Input.is_action_just_pressed("attack") and !attack_animated_sprite.is_playing():
-		if not animated_sprite.flip_h:
-			knife_collision_shape.position.x = 10
-		else:
-			knife_collision_shape.position.x = -10
-		
-		attack_animated_sprite.visible = true
-		attack_animated_sprite.play("attack")
-		
-		knife_collision_shape.disabled = false
-		attack_sound_effect.play()
-	
 	move_and_slide()
 
 
@@ -78,6 +75,19 @@ func _on_attack_animated_sprite_animation_finished():
 	animated_sprite.visible = true
 	
 	knife_collision_shape.disabled = true
+
+
+func knife_action():
+	if not animated_sprite.flip_h:
+		knife_collision_shape.position.x = 10
+	else:
+		knife_collision_shape.position.x = -10
+		
+	attack_animated_sprite.visible = true
+	attack_animated_sprite.play("attack")
+	
+	knife_collision_shape.disabled = false
+	attack_sound_effect.play()
 
 
 func save():

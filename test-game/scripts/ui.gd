@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var green_area_button = $Map/Map/GreenAreaButton
 @onready var purple_area_button = $Map/Map/PurpleAreaButton
 @onready var pause_menu = $PauseMenu
+@onready var color_rect = $ColorRect
 
 var score = 0
 
@@ -42,11 +43,14 @@ func reset_score():
 	score_label.text = "0"
 
 
+func set_death_screen(value : bool):
+	color_rect.visible = value
+
+
 func _on_green_area_button_pressed():
 	if get_tree().current_scene.name == "PurpleArea":
 		map.hide()
 		get_tree().change_scene_to_file("res://scenes/green_area.tscn")
-		SaveFileHandler.load_game()
 
 
 func _on_purple_area_button_pressed():

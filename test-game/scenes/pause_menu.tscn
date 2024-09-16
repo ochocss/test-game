@@ -14,6 +14,7 @@ metadata/_snap_enabled = true
 gradient = SubResource("Gradient_lxs2d")
 
 [node name="PauseMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,10 +24,20 @@ grow_vertical = 2
 script = ExtResource("1_fm21r")
 
 [node name="OpacitySprite" type="Sprite2D" parent="."]
+visible = false
 self_modulate = Color(1, 1, 1, 0.784314)
 position = Vector2(767.5, 360)
 scale = Vector2(10.0327, 8.47059)
 texture = ExtResource("1_v2yer")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.509804)
 
 [node name="ControlsMenu" parent="." instance=ExtResource("4_f0x3y")]
 layout_mode = 1

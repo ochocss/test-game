@@ -93,7 +93,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 8.0
+"speed": 7.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b3llk"]
