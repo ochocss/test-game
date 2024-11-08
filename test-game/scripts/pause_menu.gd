@@ -82,6 +82,8 @@ func _on_resume_button_pressed():
 
 
 func _on_load_button_pressed():
+	if !UI.can_interact:
+		return
 	if get_tree().current_scene.name == "PurpleArea":
 		get_tree().change_scene_to_file("res://scenes/green_area.tscn")
 		return
@@ -89,9 +91,8 @@ func _on_load_button_pressed():
 
 
 func _on_save_button_pressed():
-	if get_tree().current_scene.name == "PurpleArea":
-		return
-	SaveFileHandler.save_game()
+	if UI.can_interact:
+		SaveFileHandler.save_game()
 
 
 func _on_options_button_pressed():
@@ -99,7 +100,7 @@ func _on_options_button_pressed():
 
 
 func _on_quit_button_pressed():
-	if !(get_tree().current_scene.name == "PurpleArea"):
+	if !(get_tree().current_scene.name == "PurpleArea") && UI.can_interact:
 		SaveFileHandler.save_game()
 	get_tree().quit()
 

@@ -15,11 +15,9 @@ func _on_body_entered(body):
 	if !is_instance_of(body, CharacterBody2D) || is_dying:
 		return
 	
-	if is_instance_of(get_parent(), CharacterBody2D):
-		body.get_node("AnimatedSprite2D").play("death")
-	
+	body.get_node("AnimatedSprite2D").play("death")
+	UI.can_interact = false
 	collision_layer = 3
-	
 	Engine.time_scale = 0.65
 	
 	death_audio_stream_player.play()
@@ -38,6 +36,7 @@ func _on_timer_timeout():
 			coin.is_collected = false
 			coin.set_uncollected()
 	
+	UI.can_interact = true
 	var player = get_tree().current_scene.get_node("Player")
 	
 	player.get_node("CollisionShape2D").disabled = false

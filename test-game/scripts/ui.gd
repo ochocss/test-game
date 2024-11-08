@@ -9,7 +9,7 @@ extends CanvasLayer
 @onready var color_rect = $ColorRect
 
 var score = 0
-
+var can_interact = true
 
 func _ready():
 	score_label.text = str(score)
@@ -48,16 +48,17 @@ func set_death_screen(value : bool):
 
 
 func _on_green_area_button_pressed():
-	if get_tree().current_scene.name == "PurpleArea":
+	if get_tree().current_scene.name == "PurpleArea" && can_interact:
 		map.hide()
 		get_tree().change_scene_to_file("res://scenes/green_area.tscn")
-
+		can_interact = true
 
 func _on_purple_area_button_pressed():
-	if get_tree().current_scene.name == "GreenArea":
+	if get_tree().current_scene.name == "GreenArea" && can_interact:
 		map.hide()
 		SaveFileHandler.save_game()
 		get_tree().change_scene_to_file("res://scenes/purple_area.tscn")
+		can_interact = false
 
 
 func save():
