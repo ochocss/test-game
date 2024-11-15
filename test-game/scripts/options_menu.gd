@@ -28,8 +28,9 @@ func _ready():
 		sound_effect_slider.value = audio_settings.sound_effects
 		_on_sound_effect_slider_value_changed(sound_effect_slider.value)
 
+
 func _on_back_button_pressed():
-	emit_signal("back_button_pressed")
+	back_button_pressed.emit()
 
 
 func _on_music_slider_value_changed(value):

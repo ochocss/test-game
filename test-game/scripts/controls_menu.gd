@@ -1,6 +1,5 @@
 extends Control
 
-
 signal back_button_pressed
 
 @onready var input_button_scene = preload("res://scenes/input_button.tscn")
@@ -94,4 +93,4 @@ func _on_reset_button_pressed():
 
 
 func _on_back_button_pressed():
-	emit_signal("back_button_pressed")
+	back_button_pressed.emit()
